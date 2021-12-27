@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html >
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        <h2>歡迎來到{{name}}</h2>
+        <!-- <button v-on:click='showInfo'>點我提示訊息1</button> -->
+        <button @click='showInfo1'>點我提示訊息1(不傳參數)</button>
+        <button @click='showInfo2($event,100)'>點我提示訊息2(傳參數)</button>
+    </div>
+</body>
+    
+<script type="text/javascript">
+    Vue.config.productionTip = false
+
+
+    let vm = new Vue({
+        el:'#root',
+        data:{
+            name:'農場',
+        },
+        methods:{
+             showInfo1(event){
+                alert('安安')
+                
+            },
+             showInfo2(event,number){
+                alert('安安安')
+             }
+             
+        }
+    })
+
+</script>    
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html >
+<head>
+    <meta charset="UTF-8">
+    <title>理解MVVM</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        <h1>學校名稱:{{name}}</h1><br>
+        <h1>學校地址:{{address}}</h1>
+    </div>
+</body>
+    
+<script type="text/javascript">
+    Vue.config.productionTip = false
+    
+    let vm =new Vue({
+        
+        data:function(){
+            return{
+                name:'jim',
+                address:'永和'
+                
+            }
+        }
+    })
+    console.log(vm);
+    vm.$mount('#root')
+    
+
+</script>    
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html >
+<head>
+    <meta charset="UTF-8">
+    <title>姓名案例_計算屬性實現</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        姓: <input type="text" v-model='firstName'><br><br>
+        名: <input type="text" v-model='lastName'><br><br>
+        全名: <span>{{fullName}}</span>
+        
+    </div>
+</body>
+    
+<script type="text/javascript">
+    Vue.config.productionTip = false
+
+    const vm = new Vue({
+        el:'#root',
+        data:{
+            firstName:'蔡',
+            lastName:'庚瑾'
+        },
+        computed:{
+            //完整寫法
+            // fullName:{
+            //     //get有甚麼作用?當有人讀取fullname時，get就會被調用，且返回值就作為fullName的值
+            //     //get甚麼時候調用?1.初次讀取fullName時，2.所依賴的數據發生變化時
+            //     get(){
+            //         return this.firstName + '-' +this.lastName
+            //     },
+            //     //set甚麼時候調用? fullName被修改時
+            //     set(value){
+            //     const arr = value.split('-')
+            //     this.firstName = arr[0]
+            //     this.lastName = arr[1]
+            // }
+            // }
+            //簡寫
+            //只考慮讀取(get) 不考慮修改(set)的時候才能用
+            fullName(){       
+                    return this.firstName + '-' +this.lastName               
+            }
+        }
+        
+    })
+
+</script>    
+</html>

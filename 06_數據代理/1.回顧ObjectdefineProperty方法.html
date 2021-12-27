@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html >
+<head>
+    <meta charset="UTF-8">
+    <title>回顧ObjectdefineProperty方法</title>
+</head>
+<body>
+    <script type='text/javascript'>
+        let number = 18
+        let person = {
+            name:"jim",
+            sex:"男",
+            
+        }
+        
+
+        Object.defineProperty(person,'age',{
+        //     value:18,
+        //      enumerable:true,//控制屬性使否可以被枚舉，默認false
+        //      writable:true,//控制屬性是否可以被修改，默認false
+        //      configurable:true//控制屬性是否可以被刪除，默認false
+
+        //當有人讀取person的age屬性時，get函數(getter)就會被調用，且返回值就是age的值
+        get(){
+            return number
+        },
+
+        set(value){
+            value = number
+        }
+    
+    })
+        // console.log(person)
+        
+        
+    </script>
+    
+</body>
+</html>

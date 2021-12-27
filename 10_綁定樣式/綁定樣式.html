@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html >
+<head>
+    <meta charset="UTF-8">
+    <title>綁定樣式</title>
+    <style>
+        .basic{
+           width: 400px;
+           height: 100px;
+           border:1px solid black;
+           
+        }
+        .normal{
+            background-color: skyblue;
+        }
+        .happy{
+            border: 4px solid red;
+            background-color: yellow;
+            background: linear-gradient(30deg,yellow,pink,orange);
+        }
+        .sad{
+            border:2px solid green;
+            background-color: gray;
+        }
+        .jim1{
+            border-radius: 35px;
+        }
+        .jim2{
+            background-color: black;
+        }
+        .jim3{
+            border: solid aqua 10px;
+        }
+    </style>
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        <!-- 綁定class樣式--字符串寫法，適用於:樣式的類明不確定需要動態指定 -->
+        <div class='basic' :class='mood' @click='changeMood'>{{name}}</div><br><br>
+        <!-- 綁定class樣式--數組寫法，適用於: 要綁定的樣式個數不確定，名字也不確定-->
+        <div class='basic' :class='classArr'>{{name}}</div>
+         <!-- 綁定class樣式--對象寫法，適用於: 要綁定的樣式個數確定，名字確定，但要動態決定用不用-->
+         <div class='basic' :class='classObj'>{{name}}</div>
+
+
+         <!-- 綁定style樣式--對象寫法-->
+         <div class='basic' :style='styleObj'>{{name}}</div><br><br>
+         <div class='basic' :style='[styleObj,styleObj2]'>{{name}}</div>
+         <!-- 綁定style樣式--數組寫法-->
+         <div class='basic' :style='styleArr'>{{name}}</div>
+
+
+    </div>
+</body>
+    
+<script type="text/javascript">
+    Vue.config.productionTip = false
+
+    const vm = new Vue({
+        el:'#root',
+        data:{
+            name:'jim',
+            mood:'normal',
+            classArr:['jim1','jim2','jim3'],
+            classObj:{
+                jim1:false,
+                jim2:false,
+            },
+            styleObj:{
+                fontSize:'40px',
+                color:'red',
+                
+            },
+            styleObj2:{               
+                backgroundColor:'orange'
+            },
+            styleArr:[
+                {
+                fontSize:'40px',
+                color:'blue',
+                },
+                {
+                backgroundColor:'gray'
+                }
+            ]
+        },
+        methods: {
+            changeMood(){
+                const arr = ['happy','sad','normal']
+                const index = Math.floor(Math.random()*3)
+                this.mood = arr[index]
+
+            }
+        },
+    })
+
+</script>    
+</html>

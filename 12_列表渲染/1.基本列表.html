@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style></style>
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        <!-- 遍歷數組 -->
+        <h2>人員列表(遍歷數組)</h2>
+        <ul>
+            <li v-for='(p,index) of persons' :key="index">
+                {{p.name}}-{{p.age}}
+            </li>
+        </ul>
+
+        <!-- 遍歷對象 -->
+        <h2>汽車信息(遍歷對象)</h2>
+        <ul>
+            <li v-for='(value,k) of car' :key='k'>
+                {{k}}-{{value}}
+            </li>
+        </ul>
+        <!-- 遍歷字符串 -->
+        <h2>測試遍歷字符串(用的少)</h2>
+        <ul>
+            <li v-for='(char,index) of str' :key='index'>
+                {{index}}-{{char}}
+            </li>
+        </ul>
+        <!-- 遍歷指定次數 -->
+        <h2>測試指定次數(用的少)</h2>
+        <ul>
+            <li v-for='(number,index) of 5 ' :key="index">
+                {{index}}-{{number}}
+            </li>
+        </ul>
+    </div>
+</body>
+
+<script type="text/javascript">
+    Vue.config.productionTip = false
+
+    new Vue({
+        el: '#root',
+        data: {
+            persons: [
+                { id: '001', name: 'jim', age: '29' },
+                { id: '002', name: 'well', age: '25' },
+                { id: '003', name: 'wendy', age: '24' },
+            ],
+            car: {
+                name: 'toyota',
+                price: '80',
+                color: 'black'
+            },
+            str: 'hello'
+        }
+    })
+
+</script>
+
+</html>

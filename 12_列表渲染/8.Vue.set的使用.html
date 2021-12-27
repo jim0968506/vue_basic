@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html >
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style></style>
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        <h1>學校信息</h1>
+        <h2>學校名稱:{{name}}</h2>
+        <h2>學校地址:{{address}}</h2>
+        <hr>
+        <h1>學生信息</h1>
+        <button @click='addSex'>添加一個性別屬性，默認值是男</button>
+        <h2>姓名:{{student.name}}</h2>
+        <h2 v-if='student.sex'>性別:{{student.sex}}</h2>
+        <h2>年齡: 真實{{student.age.rAge}},對外{{student.age.sAge}}</h2>
+        <h2>朋友們</h2>
+        <ul>
+            <li v-for='(f,index) in student.friend' :key='index'>
+                {{f.name}}--{{f.age}}
+            </li>
+        </ul>
+    </div>
+</body>
+    
+<script type="text/javascript">
+    Vue.config.productionTip = false
+    
+    const vm = new Vue({
+        el:'#root',
+        data:{
+            name:'農場',
+            address:'永和',
+            student:{
+                name:'jim',
+                age:{
+                    rAge:'29',
+                    sAge:'18',
+                },
+                friend:[
+                {name:'jerry',age:'35'},
+                {name:'well',age:'25'},
+                ]
+            }
+        },
+        methods: {
+            addSex(){
+                // Vue.set(this.student,'sex','男')
+                this.$set(this.student,'sex','男')
+            }
+        },
+    })
+   
+
+</script>    
+</html>

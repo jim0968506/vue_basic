@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html >
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        <h2>名稱:{{name}}</h2>
+        <h2>地址:{{address}}</h2>
+    </div>
+</body>
+    
+<script type="text/javascript">
+    Vue.config.productionTip = false
+
+    let vm = new Vue({
+        data(){
+            return{
+                name:'jim',
+                address:'永和'
+            }
+        }
+    })
+    vm.$mount('#root')
+
+</script>    
+</html>

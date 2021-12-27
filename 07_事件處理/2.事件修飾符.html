@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html >
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+<style>
+    *{
+        margin-top: 20px;
+    }
+    .demo1{
+        height: 50px;
+        background-color: aqua;
+    }
+    .box1{
+        padding: 5px;
+        background-color: orange;
+    }
+    .box2{
+        padding: 5px;
+        background-color: aqua;
+    }
+    .list{
+        width: 200px;
+        height: 200px;
+        background-color: brown;
+        overflow: auto;
+    }
+    li{
+        height:100px;
+    }
+</style>    
+</head>
+<body>
+    <div id="root">
+        <h2>歡迎來到{{name}}</h2>
+        <!-- 阻止默認事件 -->
+        <a href="https://www.facebook.com/" @click.prevent='show'>點我去fb</a>
+        <!-- 阻止事件冒泡 -->
+        <div class='demo1' @click='show'>
+            <!-- <button @click.stop='show'>點我提示訊息</button> -->
+            <!-- 修飾符可以連續寫 -->
+            <a href="https://www.facebook.com/" @click.prevent.stop='show'>點我去fb</a>    
+        </div>
+        <!-- 事件只觸發一次 -->
+        <button @click.once='show'>點我提示訊息</button>
+        <!-- 使用事件的捕獲模式 -->
+        <div class="box1">
+                div1
+            <div class="box2">
+                div2
+            </div>
+        </div>
+
+        <ul @scroll='demo' class='list'>
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+        </ul>
+    </div>
+</body>
+    
+<script type="text/javascript">
+    Vue.config.productionTip = false
+
+    const vm = new Vue({
+        el:'#root',
+        data:{
+            name:'開心農場'
+        },
+        methods:{
+            show(e){
+                alert('gogo')
+            }
+        },
+            demo(){
+                console.log('@')
+            }
+    })
+
+</script>    
+</html>

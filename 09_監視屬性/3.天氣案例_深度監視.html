@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html >
+<head>
+    <meta charset="UTF-8">
+    <title>天氣案例_監視屬性</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        <h2>今天天氣很{{info}}</h2>
+        <button @click='changeWeather'>切換天氣</button>
+        <hr>
+        <h3>a的值是{{numbers.a}}</h3>
+        <button @click='numbers.a++'>點我a++</button>
+        <h3>b的值是{{numbers.b}}</h3>
+        <button @click='numbers.b++'>點我b++</button>
+    </div>
+</body>
+    
+<script type="text/javascript">
+    Vue.config.productionTip = false
+
+    const vm = new Vue({
+        el:'#root',
+        data:{
+            isHot:true,
+            numbers:{
+                a:1,
+                b:1
+            }
+        },
+        computed: {
+            info(){
+                return this.isHot ? '炎熱' :'涼爽'
+            }
+        },
+        methods: {
+
+            changeWeather(){
+                this.isHot=!this.isHot
+            }
+        },
+        watch:{
+            'isHot':{
+                immediate:true,//初始化時讓handler調用一下
+                //handler時麼時候調用? 當isHHot發生改變時
+                handler(newValue,oldValue){
+                    console.log('isHot被修改了',newValue,oldValue);
+                }
+            },
+            //監視多級結構中某個屬性的變化
+        'numbers':{
+            //監視多級結構中所有屬性的變化
+            deep:true,
+            handler(a,b){
+                console.log('numbers動了',a,b);
+            }
+        }
+    }
+    })
+
+    
+</script>    
+</html>
