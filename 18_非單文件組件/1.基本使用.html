@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html >
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style></style>
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+<body>
+    
+    <div id="root">
+        <hel></hel>
+        <hr>
+        <h1>{{msg}}</h1>
+        <hr>
+        <sch></sch>
+        <hr>
+        <student></student>
+    </div>
+
+    <div id='root2'>
+        <hel></hel>
+    </div>
+</body>
+    
+<script type="text/javascript">
+    Vue.config.productionTip = false
+
+    
+
+    // 第一步：創建school組件
+    const school = Vue.extend({
+        // el:'#root',  組件定義時一定不要寫el配置項，因為最終所有的組件都要被一個vm管理。由vm決定服務於哪個容器
+        template:`
+            <div>
+                <h2>學校名稱:{{schoolName}}</h2>
+                <h2>學校地址:{{address}}</h2>
+                <button @click='showName'>點我提示學校名</button>
+            </div>`,
+        data(){
+            return{
+                schoolName:'農場',
+                address:'新北'
+            }
+        },
+        methods: {
+            showName(){
+                alert(this.schoolName)
+            }
+        }
+    })
+    // 第一步：創建student組件
+    const student = Vue.extend({
+        template:`
+        <div>
+            <h2>學生名稱:{{studentName}}</h2>
+            <h2>學生地址:{{age}}</h2>
+        </div>`,
+            
+        data(){
+            return{
+                studentName:'jim',
+                age:29,
+            }
+        }
+    })
+
+    // 第一步：創建hello組件
+    const hello = Vue.extend({
+        template:`
+        <div>
+            <h2>安安阿:{{name}}</h2>
+        </div>`,
+            
+        data(){
+            return{
+                name:'jim'
+            }
+        }
+    })
+
+    Vue.component('hel',hello)
+
+    
+    
+
+    // 創建vm
+    new Vue({
+        el:'#root',
+        data:{
+            msg:'hello'
+        },
+        // 第二步：註冊組件（局部註冊）
+        components:{
+            sch:school,
+            student
+        }
+    })
+
+    new Vue({
+        el:'#root2'
+    })
+    
+   
+
+</script>    
+</html>

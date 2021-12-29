@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style></style>
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        <h2 :style="{opacity}">歡迎學習Vue</h2>
+        <button @click='opacity = 1'>透明度設置為1</button>
+        <button @click='stop'>點我停止變換</button>
+    </div>
+</body>
+
+<script type="text/javascript">
+    Vue.config.productionTip = false
+
+    new Vue({
+        el: '#root',
+        data: {
+            opacity: 1
+        },
+        methods: {
+            
+            stop(){
+                this.$destroy()
+            //     clearInterval(this.timer)
+            }
+        },
+        // Vue完成模板的解析並把初始的真實DOM元素放入頁面後(掛載完畢)調用mounted
+        mounted(){
+            
+                this.timer = setInterval(() => {
+                    this.opacity -= 0.01
+                    if (this.opacity <= 0) this.opacity = 1
+                }, 16);
+            
+        },
+        beforeDestroy() {
+            console.log('vm被殺了');
+            clearInterval(this.timer)
+        },
+
+    })
+
+    // 通過外部的定時器實現   
+//    setInterval(() => {
+//        vm.opacity -= 0.01
+//        if(vm.opacity <=0) vm.opacity = 1
+//    }, 16);
+
+</script>
+
+</html>

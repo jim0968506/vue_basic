@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html >
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style></style>
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        <h2>當前的n值是:{{n}}</h2>
+        <button @click='add'>點我n+1</button>
+    </div>
+</body>
+    
+<script type="text/javascript">
+    Vue.config.productionTip = false
+
+    new Vue({
+        el:'#root',
+        data:{
+            n:1
+        },
+        methods: {
+            add(){
+                this.n++
+            }
+        },
+        beforeCreate() {
+            console.log('beforeCreate')
+            console.log(this)
+        },
+        created() {
+            console.log('created')
+
+        },
+        beforeMount() {
+            console.log('beforeMount')
+
+        },
+        mounted() {
+            
+        },
+    })
+    
+   
+
+</script>    
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style></style>
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        <h2 :style="{opacity}">歡迎學習Vue</h2>
+    </div>
+</body>
+
+<script type="text/javascript">
+    Vue.config.productionTip = false
+
+    new Vue({
+        el: '#root',
+        data: {
+            opacity: 1
+        },
+        methods: {
+            
+        },
+        // Vue完成模板的解析並把初始的真實DOM元素放入頁面後(掛載完畢)調用mounted
+        mounted(){
+            
+                setInterval(() => {
+                    this.opacity -= 0.01
+                    if (this.opacity <= 0) this.opacity = 1
+                }, 16);
+            
+        }
+
+    })
+
+    // 通過外部的定時器實現   
+//    setInterval(() => {
+//        vm.opacity -= 0.01
+//        if(vm.opacity <=0) vm.opacity = 1
+//    }, 16);
+
+</script>
+
+</html>

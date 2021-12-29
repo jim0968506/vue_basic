@@ -8,26 +8,27 @@
 </head>
 <body>
     <div id="root">
-        <form>
-            帳號:<input type="text" v-model='account'> <br><br>
-            密碼:<input type="text" v-model='password'> <br><br>
+        <form @submit.prevent='demo'>
+            帳號:<input type="text" v-model='userInfo.account'> <br><br>
+            密碼:<input type="password" v-model='userInfo.password'> <br><br>
+            年齡:<input type="number" v-model.number='userInfo.age'> <br><br>
             性別:
-            男:<input type="radio" name='sex' v-model='sex' value='male'>
-            女:<input type="radio" name='sex' v-model='sex' value='female'><br><br>
+            男:<input type="radio" name='sex' v-model='userInfo.sex' value='male'>
+            女:<input type="radio" name='sex' v-model='userInfo.sex' value='female'><br><br>
             愛好:
-            學習<input type="checkbox" v-model='hobby' value='study'>
-            打遊戲<input type="checkbox" v-model='hobby' value='game'>
-            吃飯<input type="checkbox" v-model='hobby' value='eat'><br><br>
+            學習<input type="checkbox" v-model='userInfo.hobby' value='study'>
+            打遊戲<input type="checkbox" v-model='userInfo.hobby' value='game'>
+            吃飯<input type="checkbox" v-model='userInfo.hobby' value='eat'><br><br>
             所屬校區
-            <select v-model='city'>
+            <select v-model='userInfo.city'>
                 <option value="">請選擇校區</option>
                 <option value="yh">永和</option>
                 <option value="zh">中和</option>
                 <option value="bc">板橋</option>
                 <option value="wh">萬華</option>
             </select><br><br>
-            其他信息: <textarea v-model='other'></textarea><br><br>
-            <input type="checkbox" v-model='agree'>閱讀並接受<a href="https://www.youtube.com/">《用戶協議》</a>
+            其他信息: <textarea v-model.lazy='userInfo.other'></textarea><br><br>
+            <input type="checkbox" v-model='userInfo.agree'>閱讀並接受<a href="https://www.youtube.com/">《用戶協議》</a>
             <button>提交</button>
 
         </form>
@@ -40,15 +41,23 @@
    new Vue({
        el:'#root',
        data:{
-           account:'',
+           userInfo:{
+            account:'',
            password:'',
            sex:'female',
            hobby:[],
            city:'',
            other:'',
-           agree:'true'
+           agree:'true',
+           age:''
+           }
 
-       }
+       },
+       methods: {
+           demo(){
+                console.log(JSON.stringify(this.userInfo));
+           }
+       },
    })
 
 </script>    
